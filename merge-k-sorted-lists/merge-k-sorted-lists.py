@@ -9,11 +9,12 @@ class Solution:
         # divide and conquer
         # divide list into half
         # merge 
-        def mergeLists(list1, list2):
-            if not list1:
-                return list2
-            if not list2:
-                return list1
+        if not lists:
+            return
+        elif len(lists) == 1:
+            return lists[0]
+        elif len(lists) == 2:
+            list1, list2 = lists[0], lists[1]
             temp = list1
             if list1.val <= list2.val:
                 list1 = list1.next
@@ -34,18 +35,13 @@ class Solution:
             if list2:
                 curr.next = list2
             return temp
-        if not lists:
-            return
-        if len(lists) == 1:
-            return lists[0]
-        if len(lists) == 2:
-            return mergeLists(lists[0], lists[1])
-        # divide array into 2 halves: left, right
-        # recurse on both
-        mid = len(lists) // 2
-        list1 = lists[:mid]
-        list2 = lists[mid:]
-        left = self.mergeKLists(list1)
-        right = self.mergeKLists(list2)
-        return mergeLists(left, right)
+        else:
+            # divide array into 2 halves: left, right
+            # recurse on both
+            mid = len(lists) // 2
+            list1 = lists[:mid]
+            list2 = lists[mid:]
+            left = self.mergeKLists(list1)
+            right = self.mergeKLists(list2)
+            return self.mergeKLists([left, right])
 
