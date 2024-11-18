@@ -15,6 +15,10 @@ class Solution:
             return lists[0]
         elif len(lists) == 2:
             list1, list2 = lists[0], lists[1]
+            if not list1:
+                return list2
+            if not list2:
+                return list1
             temp = list1
             if list1.val <= list2.val:
                 list1 = list1.next
