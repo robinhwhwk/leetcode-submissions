@@ -17,10 +17,10 @@ class Solution:
             right = sameTree(tree1.right, tree2.right)
             return left and right
         def dfs(node, subRoot):
-            if sameTree(node, subRoot):
-                return True
             if not node:
                 return False
+            if sameTree(node, subRoot):
+                return True
             left = dfs(node.left, subRoot)
             right = dfs(node.right, subRoot)
             return left or right
