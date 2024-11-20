@@ -15,6 +15,7 @@ class Solution:
             count[0] += 1
             if count[0] == k:
                 res[0] = node.val
+                return
             right = dfs(node.right)
 
         dfs(root)
