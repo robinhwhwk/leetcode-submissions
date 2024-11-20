@@ -8,11 +8,11 @@ class Solution:
             return sum([ceil(num / divisor) for num in nums]) <= threshold
         low, high = 1, max(nums)
         last_valid = -1
-        while low <= high:
+        while low < high:
             mid = (low + high) // 2
             if valid(mid):
                 # last_valid = mid
-                high = mid - 1
+                high = mid
             else:
                 low = mid + 1
         return low
