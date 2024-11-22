@@ -20,6 +20,6 @@ class Solution:
             right = max(dfs(node.right), 0)
             include = left + right + node.val
             res[0] = max(res[0], include)
-            return node.val + left + right
+            return node.val + max(left, right)
         dfs(root)
         return res[0]
