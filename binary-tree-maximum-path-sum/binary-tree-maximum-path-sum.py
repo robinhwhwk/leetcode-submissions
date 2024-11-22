@@ -11,7 +11,7 @@ class Solution:
         # dp[node][1]: max path sum including this node
         # dp[node][1] = dp[node.left][1] + node.val + dp[node.right][1]
         # dp[node][0] = max(dp[node.left][1], dp[node.right][1], dp[node.left][0], dp[node.right][0])
-        res = [0]
+        res = [float('-inf')]
 
         def dfs(node):
             if not node:
