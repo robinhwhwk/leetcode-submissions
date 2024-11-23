@@ -4,14 +4,13 @@ class Solution:
             if i < 0 or i >= len(board) or j < 0 or j >= len(board[0]) or board[i][j] == "#":
                 return False
             current_word += board[i][j]
-            temp = board[i][j]
-            board[i][j] = "#"
             index = len(current_word) - 1
             if len(current_word) > len(word) or current_word[index] != word[index]:
-                board[i][j] = temp
                 return False
             if current_word == word:
                 return True
+            temp = board[i][j]
+            board[i][j] = "#"
             # match until this current word
             dirs = [[1, 0], [0, 1], [-1, 0], [0, -1]]
             for r, c in dirs:
