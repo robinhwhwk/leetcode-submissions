@@ -1,16 +1,18 @@
 class Solution:
     def trap(self, height: List[int]) -> int:
-        # process each cell one by one
-        # compute maximum left and maximum right
-        # the value added for each cell is min(maxLeft, maxRight) - height
-        maxLeft = [0 for _ in range(len(height) + 1)]
-        maxRight = [0 for _ in range(len(height) + 1)]
+        left, right = 0, len(height) - 1
+        max_left = max_right = 0
         res = 0
-        for i in range(1, len(height)):
-            maxLeft[i] = max(maxLeft[i - 1], height[i - 1])
-        for j in range(len(height) - 2, -1, -1):
-            maxRight[j] = max(maxRight[j + 1], height[j + 1])
-            minLeftRight = min(maxLeft[j], maxRight[j])
-            if minLeftRight > height[j]:
-                res += minLeftRight - height[j]
+        while left < right:
+            if height[left] < height[right]:
+                if max_left > height[left]:
+                    res += max_left - height[left]
+                max_left = max(max_left, height[left])
+                left += 1
+            else:
+                if max_right > height[right]:
+                    res += max_right - height[right]
+                max_right = max(max_right, height[right])
+                right -= 1
+            
         return res
