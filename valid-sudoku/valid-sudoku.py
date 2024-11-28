@@ -1,41 +1,36 @@
 class Solution:
     def isValidSudoku(self, board: List[List[str]]) -> bool:
-        def isValidBox(i, j):
+        # print("==== TESTING COLS ====")
+        for row in range(len(board)):
             uniques = set()
-            for row in range(i, i + 3):
-                for col in range(j, j + 3):
-                    if board[row][col] == ".":
-                        continue
-                    if board[row][col] in uniques:
-                        # print("not valid box at:", row, col)
-                        return False
-                    uniques.add(board[row][col])
-            return True
-        def isValidRow():
-            for i in range(len(board)):
-                uniques = set()
-                for col in range(len(board[0])):
-                    if board[i][col] == ".":
-                        continue
-                    if board[i][col] in uniques:
-                        # print("not valid row:", i)
-                        return False
-                    uniques.add(board[i][col])
-            return True
-        def isValidCol():
-            for j in range(len(board[0])):
-                uniques = set()
-                for row in range(len(board)):
-                    if board[row][j] == ".":
-                        continue
-                    if board[row][j] in uniques:
-                        # print("not valid col:", j)
-                        return False
-                    uniques.add(board[row][j])
-            return True
-        for i in range(0, 9, 3):
-            for j in range(0, 9, 3):
-                if not isValidBox(i, j):
-                    # print("not valid box:", i, j)
+            for col in range(len(board)):
+                if board[row][col] in uniques:
                     return False
-        return isValidRow() and isValidCol()
+                if board[row][col] != ".":
+                    uniques.add(board[row][col])
+                # print(uniques)
+        # print("==== TESTING ROWS ====")
+        for col in range(len(board)):
+            uniques = set()
+            for row in range(len(board)):
+                if board[row][col] in uniques:
+                    return False
+                if board[row][col] != ".":
+                    uniques.add(board[row][col])
+                # print(uniques)
+        # print("==== TESTING BOXES ====")
+        for i in range(9):
+            starting_row = (i // 3) * 3
+            starting_col = (i % 3) * 3
+            # print("BOX row:", starting_row, "BOX col:", starting_col)
+            uniques = set()
+            for j in range(3):
+                for k in range(3):
+                    nr = starting_row + j
+                    nc = starting_col + k
+                    if board[nr][nc] in uniques:
+                        return False
+                    if board[nr][nc] != ".":
+                        uniques.add(board[nr][nc])
+                    # print(uniques)
+        return True
