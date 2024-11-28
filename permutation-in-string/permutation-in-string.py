@@ -17,6 +17,4 @@ class Solution:
             left += 1
             right += 1
             s2_count[ord(s2[right]) - ord('a')] += 1
-            if s1_count == s2_count:
-                return True
-        return False
+        return s1_count == s2_count
