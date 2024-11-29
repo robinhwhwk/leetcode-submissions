@@ -14,5 +14,5 @@ class Solution:
             for j in range(len(grid[0])):
                 if grid[i][j] == "1":
                     res += 1
-                dfs(i, j)
+                    dfs(i, j)
         return res
