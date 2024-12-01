@@ -6,9 +6,10 @@ class Solution:
         # for each word in wordDict, check if current_string - word is true
         dp = [False for _ in range(len(s) + 1)]
         dp[0] = True
+        wordSet = set(wordDict)
         for i in range(1, len(s) + 1):
-            for word in wordDict:
-                if word == s[i - len(word):i] and dp[i - len(word)]:
+            for j in range(i - 1, -1, -1):
+                if s[j:i] in wordSet and dp[j]:
                     dp[i] = True
                     break
         return dp[len(s)]
