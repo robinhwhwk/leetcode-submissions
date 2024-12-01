@@ -18,10 +18,7 @@ class Solution:
                 op1 = stack.pop()
                 op2 = stack.pop()
                 res = op2 / op1
-                if res < 0:
-                    res = ceil(res)
-                else:
-                    res = floor(res)
+                res = int(res)
                 stack.append(res)
             else: # token is integer
                 stack.append(int(token))
