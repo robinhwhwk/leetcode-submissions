@@ -1,6 +1,5 @@
 class Solution:
     def getLargestOutlier(self, nums: List[int]) -> int:
-        uniques = set(nums)
         counts = dict()
         for num in nums:
             if num not in counts:
