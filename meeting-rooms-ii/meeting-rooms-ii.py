@@ -3,8 +3,8 @@ class Solution:
         # sort the intervals by start time
         times = []
         for interval in intervals:
-            times.append([interval[0], 1])
-            times.append([interval[1], -1])
+            times.append((interval[0], 1))
+            times.append((interval[1], -1))
         times.sort()
         res = 0
         curr = 0
