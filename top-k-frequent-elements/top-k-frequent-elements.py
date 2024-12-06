@@ -8,7 +8,7 @@ class Solution:
             if nums[i] not in frequency_map:
                 frequency_map[nums[i]] = 0
             frequency_map[nums[i]] += 1
-        for freq, value in frequency_map.items():
+        for value, freq in frequency_map.items():
             buckets[freq].append(value)
         res = []
         for i in range(len(nums), -1, -1): # scan frequency buckets from backwards
