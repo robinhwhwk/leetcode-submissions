@@ -14,7 +14,7 @@ class Solution:
                 elif nbr in visited and nbr != parent:
                     return True
             return False
-        visited = set([])
+        visited = set()
         if dfs(-1, 0, visited):
             return False
         if len(visited) != n:
