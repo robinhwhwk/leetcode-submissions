@@ -3,25 +3,24 @@ class Solution:
         count = dict()
         for task in tasks:
             if task not in count:
-                count[task] = 0
+                count[task] = 0 
             count[task] += 1
-        priority_queue = []
-        for task in count:
-            heapq.heappush(priority_queue, (-1 * count[task], task))
+        # A: 3, B: 3
+        priority_queue = [[-freq, task] for (task, freq) in count.items()]
+        heapq.heapify(priority_queue) # O(n)
         time = 0
         while priority_queue:
-            removed_list = []
+            removed_tasks = []
             for i in range(n + 1):
-                time += 1
-                if not priority_queue:
-                    continue
-                prio, task = heapq.heappop(priority_queue)
-                if prio < -1:
-                    removed_list.append((prio + 1, task))
-                if not removed_list and not priority_queue:
+                if priority_queue:
+                    freq, task = heapq.heappop(priority_queue)
+                    if freq < -1:
+                        removed_tasks.append([freq + 1, task])
+                    time += 1
+                elif removed_tasks:
+                    time += 1
+                else:
                     return time
-            for i in range(len(removed_list)):
-                heapq.heappush(priority_queue, removed_list[i])
+            for removed_task in removed_tasks:
+                heapq.heappush(priority_queue, removed_task)
         return time
-                
-                
