@@ -25,11 +25,11 @@ class Solution:
                     prereqs[s1[p1]].add(s2[p2])
                     prereq_count[s2[p2]] += 1
                     
-        queue = [ch for ch, count in prereq_count.items() if count == 0]
+        queue = deque([ch for ch, count in prereq_count.items() if count == 0])
         result = ""
         while queue:
             # process characters without dependencies
-            current_char = queue.pop(0)
+            current_char = queue.popleft()
             result += current_char
             for dependent in prereqs[current_char]:
                 prereq_count[dependent] -= 1
