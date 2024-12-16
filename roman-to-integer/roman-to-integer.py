@@ -15,13 +15,12 @@ class Solution:
             "CD": 400,
             "CM": 900
         }
-        prefixSet = set("IXC")
         total = 0
         i = 0
-
+        
         while i < len(s):
             roman = s[i]
-            if roman in prefixSet and i != len(s) - 1:
+            if roman in "IXC" and i != len(s) - 1:
                 if s[i:i+2] in romanDict:
                     total += romanDict[s[i:i+2]]
                     i += 1
