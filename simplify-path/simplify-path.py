@@ -10,5 +10,5 @@ class Solution:
                     stack.pop(-1)
             elif d != ".":
                 stack.append(d)
-        return "/" + "/".join([d for d in stack if d])
+        return "/" + "/".join(stack)
         
